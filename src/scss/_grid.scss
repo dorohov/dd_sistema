@@ -1,9 +1,115 @@
 .__dd {
+    overflow: hidden;
+    &__right-text {
+        position: relative;
+        &::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotate(-180deg);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            z-index: 2;
+        }
+    }
+    &__bg-text {
+        position: relative;
+        z-index: 2;
+        &::after {
+            content: attr(data-text);
+            position: absolute;
+            font-size: 12.3vw;
+            @include fontItalic();
+            transform: rotate(-8.18deg);
+            -webkit-text-stroke: 1px rgba(#000, .19);
+            color: transparent;
+            z-index: -2;
+            left: 0;
+            right: 0;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
+        }
+        &::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform: rotate(-8.18deg);
+            top: 20px;
+            transition: 3s all ease;
+            z-index: -1;
+        }
+        &.__dd__is--show {
+            &::before {
+                width: 0;
+            }
+        }
+        &.__dd__is--bgf7 {
+            &::before {
+                background: #f7f7f7;
+            }
+        }
+        &.__dd__is--xs {
+            &::after {
+                font-size: 9vw;
+            }
+        }
+    }
+}
+
+.__dd {
     &__container {
         max-width: #{1480px + 60px};
         width: 100%;
         padding-left: 30px;
         padding-right: 30px;
         margin: 0 auto;
+    }
+
+    &__heading {
+        &__sub {
+            @include fontItalic();
+            font-size: 34px;
+        }
+        &__text {
+            @include fontBold();
+            font-size: 48px;
+            text-transform: uppercase;
+        }
+        &__desc {
+            padding-top: 55px;
+            font-size: 16px;
+            line-height: 21px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .__dd {
+        &__bg-text,
+        &__right-text {
+            &::after,
+            &::before {
+                content: none;
+            }
+        }
+        &__heading {
+            &__sub {
+                font-size: 26px;
+            }
+            &__text {
+                font-size: 36px;
+            }
+            &__desc {
+                padding-top: 15px;
+                font-size: 15px;
+                br {
+                    display: none;
+                }
+            }
+        }
     }
 }
