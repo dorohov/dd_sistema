@@ -1,3 +1,11 @@
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    
+    .__dd__block-on__circles__block {
+        animation: none !important;
+    }
+    .__dd__bg-text {
+        &::after,
+        &::before {
+            content: none;
+        }
+    }
 }
